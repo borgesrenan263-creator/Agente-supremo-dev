@@ -1,9 +1,12 @@
-import "./style.css";
+import "./src/style.css";
 
+// 1) Preferir variável do build (Render Static)
+// 2) Se não existir, usar localhost/dev em Termux
 const API_BASE =
-  location.hostname === "localhost" || location.hostname === "127.0.0.1"
+  (import.meta?.env?.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) ||
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8787"
-    : `http://${location.hostname}:8787`;
+    : `http://${location.hostname}:8787`);
 
 const TOKEN = "dev-token";
 
